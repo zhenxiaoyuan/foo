@@ -1,4 +1,5 @@
 #include "SDL3/SDL.h"
+#include "SDL3/SDL_image.h"
 
 class App {
     public:
@@ -23,6 +24,7 @@ class App {
 
         SDL_Window* window = 0;
         SDL_Renderer* renderer = 0;
+        SDL_Texture* texture = 0;
 
         bool running = false;
 };

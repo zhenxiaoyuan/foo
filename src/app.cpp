@@ -39,6 +39,9 @@ bool App::init(
 {
     bool init_success = false;
 
+    int texture_player_w = 288;
+    int texture_player_h = 240;
+
     if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
         window = SDL_CreateWindow(
             "foo",
@@ -54,6 +57,14 @@ bool App::init(
 
             if (renderer != 0) {
                 SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
+
+                texture = IMG_LoadTexture(renderer, "../assets/charactors/player.png");
+                if (texture != 0) {
+                    SDL_QueryTexture(texture, NULL, NULL, &texture_player_w, &texture_player_h);
+                }
+                else {
+                    SDL_Log("Couldn't load texture: %s. \n", SDL_GetError());
+                }
                 init_success = true;
             }
         }
@@ -86,11 +97,13 @@ void App::update()
 void App::render()
 {
     SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
     SDL_RenderPresent(renderer);
 }
 
 void App::clean()
 {
+    SDL_DestroyTexture(texture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
