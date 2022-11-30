@@ -58,12 +58,12 @@ bool App::init(
             if (renderer != 0) {
                 SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
-                texture = IMG_LoadTexture(renderer, "../assets/charactors/player.png");
+                texture = IMG_LoadTexture(renderer, "assets/characters/player.png");
                 if (texture != 0) {
                     SDL_QueryTexture(texture, NULL, NULL, &texture_player_w, &texture_player_h);
                 }
                 else {
-                    SDL_Log("Couldn't load texture: %s. \n", SDL_GetError());
+                    SDL_Log("Loading texture: %s. \n", SDL_GetError());
                 }
                 init_success = true;
             }

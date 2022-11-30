@@ -1,5 +1,5 @@
-#include "SDL3/SDL.h"
-#include "SDL3/SDL_image.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 
 class App {
     public:
