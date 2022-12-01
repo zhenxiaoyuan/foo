@@ -1,5 +1,7 @@
-#include "SDL3/SDL.h"
-#include "SDL3/SDL_image.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+
+#include "cache/tex.hpp"
 
 class App {
     public:
@@ -22,4 +24,5 @@ class App {
         SDL_Texture* texture = 0;
 
         bool running = false;
+
 };
