@@ -9,18 +9,13 @@ class App {
         void run();
 
     private:
-        bool init(
-            const char* title,
-            const int xpos,
-            const int ypos,
-            const int height,
-            const int width,
-            const int flags
-        );
+        bool init();
         void events();
         void update();
         void render();
         void clean();
+
+        void load_texture();
 
         SDL_Window* window = 0;
         SDL_Renderer* renderer = 0;
