@@ -1,16 +1,16 @@
-#include "game.hpp"
+#include "character.hpp"
 #include "../cache/tex.hpp"
 #include "../cons.hpp"
 
-Game::Game()
+Character::Character()
 {
 }
 
-Game::~Game()
+Character::~Character()
 {
 }
 
-void Game::init(std::string tex_id, int row, int col, int x, int y, int w, int h)
+void Character::init(std::string tex_id, int row, int col, int x, int y, int w, int h)
 {
     m_tex_id = tex_id;
     m_row = row;
@@ -21,16 +21,16 @@ void Game::init(std::string tex_id, int row, int col, int x, int y, int w, int h
     m_h = h;
 }
 
-void Game::draw(SDL_Renderer *renderer)
+void Character::draw(SDL_Renderer *renderer)
 {
     Tex::Cache()->draw(renderer, m_tex_id, m_frame, m_row, m_x, m_y, m_w, m_h, m_flip);
 }
 
-void Game::update()
+void Character::update()
 {
     m_frame = int((SDL_GetTicks() / 100) % m_col);
 }
 
-void Game::clean()
+void Character::clean()
 {
 }

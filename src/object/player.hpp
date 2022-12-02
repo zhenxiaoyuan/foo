@@ -1,6 +1,6 @@
-#include "game.hpp"
+#include "character.hpp"
 
-class Player : public Game
+class Player : public Character
 {
 public:
     Player();
