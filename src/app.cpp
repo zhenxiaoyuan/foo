@@ -1,5 +1,6 @@
 #include "app.hpp"
 #include "cons.hpp"
+#include "cache/tex.hpp"
 
 App::App()
 {
@@ -9,6 +10,8 @@ App::App()
 App::~App()
 {
     clean();
+
+    delete player;
 }
 
 void App::run()
@@ -35,9 +38,9 @@ bool App::init()
     SDL_SetWindowTitle(window, "foo");
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
-    // load_texture();
-    Tex* cache = Tex::Cache();
-    cache->say_hello();
+    Tex::Cache()->load(renderer, "assets/characters/player/idle.png", "player_idle", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
+
+    player->init("player_idle", 1, 6, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT);
 
     return true;
 }
@@ -61,44 +64,21 @@ void App::events()
 
 void App::update()
 {
+    player->update();
 }
 
 void App::render()
 {
-    SDL_Rect src_rect, dst_rect;
-    src_rect.x = 48 * int((SDL_GetTicks() / 100) % 6);
-    src_rect.y = 0;
-    dst_rect.x = 100;
-    dst_rect.y = 100;
-    src_rect.w = 48;
-    src_rect.h = 48;
-    dst_rect.w = 48 * 2;
-    dst_rect.h = 48 * 2;
-
     SDL_RenderClear(renderer);
-    SDL_RenderCopyEx(renderer, texture, &src_rect, &dst_rect, 0, 0, SDL_FLIP_HORIZONTAL);
+
+    player->draw(renderer);
+
     SDL_RenderPresent(renderer);
 }
 
 void App::clean()
 {
-    SDL_DestroyTexture(texture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-}
-
-void App::load_texture()
-{
-    SDL_Rect src_rect;
-    src_rect.w = 288;
-    src_rect.h = 48;
-
-    texture = IMG_LoadTexture(renderer, "assets/characters/player/idle.png");
-    if (!texture) {
-        SDL_Log("IMG_LoadTexture failed: %s. \n", SDL_GetError());
-        return;
-    }
-
-    SDL_QueryTexture(texture, NULL, NULL, &src_rect.w, &src_rect.h);
 }

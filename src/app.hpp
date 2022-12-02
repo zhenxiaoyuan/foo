@@ -1,7 +1,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
-#include "cache/tex.hpp"
+#include "object/player.hpp"
 
 class App {
     public:
@@ -17,12 +17,10 @@ class App {
         void render();
         void clean();
 
-        void load_texture();
-
         SDL_Window* window = 0;
         SDL_Renderer* renderer = 0;
-        SDL_Texture* texture = 0;
 
         bool running = false;
 
+        Player* player = new Player;
 };
