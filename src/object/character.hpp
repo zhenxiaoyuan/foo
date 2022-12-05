@@ -1,24 +1,24 @@
 #include <string>
 
 #include "SDL/SDL.h"
+#include "../params/character.hpp"
 
 class Character
 {
 public:
-    Character();
+    Character(const CharacterParams* params);
     virtual ~Character();
 
-    virtual void init(std::string tex_id, int row, int col, int x, int y, int w, int h);
     virtual void draw(SDL_Renderer* renderer);
     virtual void update();
     virtual void clean();
 
 private:
-    std::string m_tex_id;
-    int m_frame = 0;
-    int m_row, m_col;
-    int m_x, m_y;
-    int m_w, m_h;
-    SDL_RendererFlip m_flip = SDL_FLIP_NONE;
+    std::string tex_id;
+    int frame = 0;
+    int row, col;
+    int x, y;
+    int w, h;
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
 };
 

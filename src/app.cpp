@@ -40,8 +40,6 @@ bool App::init()
 
     Tex::Cache()->load(renderer, "assets/characters/player/idle.png", "player_idle", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
 
-    player->init("player_idle", 1, 6, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT);
-
     return true;
 }
 

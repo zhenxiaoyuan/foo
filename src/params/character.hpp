@@ -10,12 +10,39 @@ public:
     {
     }
 
+    std::string get_tex_id() const {
+        return this->tex_id;
+    }
+
+    int get_row() const {
+        return this->row;
+    }
+
+    int get_col() const {
+        return this->col;
+    }
+
+    int get_x() const {
+        return this->x;
+    }
+
+    int get_y() const {
+        return this->y;
+    }
+
+    int get_w() const {
+        return this->w;
+    }
+
+    int get_h() const {
+        return this->h;
+    }
+
+
 private:
     std::string tex_id;
-    int frame = 0;
     int row, col;
     int x, y;
     int w, h;
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
 };
 

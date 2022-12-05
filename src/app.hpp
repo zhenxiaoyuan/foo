@@ -22,5 +22,6 @@ class App {
 
         bool running = false;
 
-        Player* player = new Player;
+        CharacterParams* params = new CharacterParams("player_idle", 1, 6, 100, 100, 48, 48);
+        Player* player = new Player(params);
 };

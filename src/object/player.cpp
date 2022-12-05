@@ -1,16 +1,18 @@
 #include "player.hpp"
 
-Player::Player()
+Player::Player(const CharacterParams* params) : Character(params)
 {
+    this->tex_id = params->get_tex_id();
+    this->row = params->get_row();
+    this->col = params->get_col();
+    this->x = params->get_x();
+    this->y = params->get_y();
+    this->w = params->get_w();
+    this->h = params->get_h();
 }
 
 Player::~Player()
 {
-}
-
-void Player::init(std::string tex_id, int row, int col, int x, int y, int w, int h)
-{
-    Character::init(tex_id, row, col, x, y, w, h);
 }
 
 void Player::draw(SDL_Renderer *renderer)
