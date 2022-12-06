@@ -1,12 +1,12 @@
-#include "app.hpp"
+#include "application.hpp"
 
 #include <iostream>
 
 int main(int argc, char** argv) {
     try {
-        App* app = new App;
-        app->run();
-        delete app;
+        Application::Instance()->init();
+        Application::Instance()->run();
+        Application::Instance()->clean();
     }
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;

@@ -1,6 +1,5 @@
 #include "character.hpp"
-#include "../cache/tex.hpp"
-#include "../cons.hpp"
+#include "../manager/texture_manager.hpp"
 
 Character::Character(const CharacterParams* params)
 {
@@ -17,9 +16,9 @@ Character::~Character()
 {
 }
 
-void Character::draw(SDL_Renderer *renderer)
+void Character::draw()
 {
-    Tex::Cache()->draw(renderer, tex_id, frame, row, x, y, w, h, flip);
+    TextureManager::Instance()->draw(tex_id, frame, row, x, y, w, h, flip);
 }
 
 void Character::update()

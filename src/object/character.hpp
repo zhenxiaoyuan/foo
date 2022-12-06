@@ -1,7 +1,7 @@
 #include <string>
 
 #include "SDL/SDL.h"
-#include "../params/character.hpp"
+#include "../params/character_params.hpp"
 
 class Character
 {
@@ -9,7 +9,7 @@ public:
     Character(const CharacterParams* params);
     virtual ~Character();
 
-    virtual void draw(SDL_Renderer* renderer);
+    virtual void draw();
     virtual void update();
     virtual void clean();
 

@@ -15,9 +15,9 @@ Player::~Player()
 {
 }
 
-void Player::draw(SDL_Renderer *renderer)
+void Player::draw()
 {
-    Character::draw(renderer);
+    Character::draw();
 }
 
 void Player::update()

@@ -6,7 +6,7 @@ public:
     Player(const CharacterParams* params);
     ~Player();
 
-    void draw(SDL_Renderer* renderer);
+    void draw();
     void update();
     void clean();
 
