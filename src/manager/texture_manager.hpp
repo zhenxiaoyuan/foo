@@ -12,7 +12,7 @@ public:
     static TextureManager* Instance();
 
     void load(std::string, std::string, int, int);
-    void draw(std::string id, int frame, int row, int x, int y, int w, int h, SDL_RendererFlip flip);
+    void draw(std::string id, int frame, int row, float x, float y, int w, int h, int scalar, SDL_RendererFlip flip);
 
 private:
     TextureManager();

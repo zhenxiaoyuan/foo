@@ -39,7 +39,7 @@ void TextureManager::load(std::string path, std::string id, int w, int h)
     tex_map[id] = texture;
 }
 
-void TextureManager::draw(std::string id, int frame, int row, int x, int y, int w, int h, SDL_RendererFlip flip)
+void TextureManager::draw(std::string id, int frame, int row, float x, float y, int w, int h, int scalar, SDL_RendererFlip flip)
 {
     SDL_Rect src_rect, dst_rect;
 
@@ -47,8 +47,10 @@ void TextureManager::draw(std::string id, int frame, int row, int x, int y, int 
     src_rect.y = (row - 1) * h;
     dst_rect.x = x;
     dst_rect.y = y;
-    src_rect.w = dst_rect.w = w;
-    src_rect.h = dst_rect.h = h;
+    src_rect.w = w;
+    src_rect.h = h;
+    dst_rect.w = w * scalar;
+    dst_rect.h = h * scalar;
 
     SDL_RenderCopyEx(Application::Instance()->get_renderer(), tex_map[id], &src_rect, &dst_rect, 0, 0, flip);
 }

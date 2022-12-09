@@ -2,6 +2,7 @@
 
 #include "SDL/SDL.h"
 #include "../params/character_params.hpp"
+#include "vector2d.hpp"
 
 class Character
 {
@@ -13,12 +14,15 @@ public:
     virtual void update();
     virtual void clean();
 
-private:
+protected:
     std::string tex_id;
     int frame = 0;
     int row, col;
-    int x, y;
+    Vector2D pos;
+    Vector2D vel;
+    Vector2D acc;
     int w, h;
+    int scalar;
     SDL_RendererFlip flip = SDL_FLIP_NONE;
 };
 

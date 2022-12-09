@@ -5,8 +5,8 @@
 class CharacterParams
 {
 public:
-    CharacterParams(std::string tex_id, int row, int col, int x, int y, int w, int h)
-        : tex_id{tex_id}, row{row}, col{col}, x{x}, y{y}, w{w}, h{h}
+    CharacterParams(std::string tex_id, int row, int col, float x, float y, int w, int h, int scalar)
+        : tex_id{tex_id}, row{row}, col{col}, x{x}, y{y}, w{w}, h{h}, scalar{scalar}
     {
     }
 
@@ -22,11 +22,11 @@ public:
         return this->col;
     }
 
-    int get_x() const {
+    float get_x() const {
         return this->x;
     }
 
-    int get_y() const {
+    float get_y() const {
         return this->y;
     }
 
@@ -38,11 +38,15 @@ public:
         return this->h;
     }
 
+    int get_scalar() const {
+        return this->scalar;
+    }
 
 private:
     std::string tex_id;
     int row, col;
-    int x, y;
+    float x, y;
     int w, h;
+    int scalar;
 };
 

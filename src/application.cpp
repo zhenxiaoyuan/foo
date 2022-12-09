@@ -1,6 +1,6 @@
 #include "application.hpp"
-#include "constants.hpp"
 #include "manager/texture_manager.hpp"
+#include "manager/input_manager.hpp"
 
 Application* Application::instance = nullptr;
 
@@ -27,11 +27,26 @@ Application* Application::Instance()
 
 void Application::run()
 {
+    Uint32 frame_start, frame_time;
+
     while(running) {
+        frame_start = SDL_GetTicks();
+
         events();
         update();
         render();
+
+        frame_time = SDL_GetTicks() - frame_start;
+
+        if (frame_time < DELAY_TIME) {
+            SDL_Delay((int)(DELAY_TIME - frame_time));
+        }
     }
+}
+
+void Application::set_running(bool running)
+{
+    this->running = running;
 }
 
 SDL_Renderer *Application::get_renderer()
@@ -54,26 +69,16 @@ void Application::init()
     SDL_SetWindowTitle(window, "foo");
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
-    TextureManager::Instance()->load("assets/characters/player/idle.png", "player_idle", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
+    TextureManager::Instance()->load("../assets/characters/player/idle.png", "player_idle", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
+    TextureManager::Instance()->load("../assets/characters/player/run.png", "player_run", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
+    TextureManager::Instance()->load("../assets/characters/player/attack.png", "player_attack", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
 
     running = true;
 }
 
 void Application::events()
 {
-    SDL_Event event;
-
-    while (SDL_PollEvent(&event)) {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            running = false;
-            break;
-
-        default:
-            break;
-        }
-    }
+    InputManager::Instance()->update();
 }
 
 void Application::update()
