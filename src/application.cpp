@@ -1,6 +1,8 @@
 #include "application.hpp"
-#include "manager/texture_manager.hpp"
+#include "constants.hpp"
 #include "manager/input_manager.hpp"
+#include "state/menu_state.hpp"
+#include "state/play_state.hpp"
 
 Application* Application::instance = nullptr;
 
@@ -12,7 +14,6 @@ Application::~Application()
 {
     clean();
 
-    delete player;
     delete instance;
 }
 
@@ -56,7 +57,6 @@ SDL_Renderer *Application::get_renderer()
 
 void Application::init()
 {
-
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
         SDL_Log("SDL_Init failed: %s\n", SDL_GetError());
         running = false;
@@ -69,9 +69,9 @@ void Application::init()
     SDL_SetWindowTitle(window, "foo");
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
-    TextureManager::Instance()->load("../assets/characters/player/idle.png", "player_idle", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
-    TextureManager::Instance()->load("../assets/characters/player/run.png", "player_run", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
-    TextureManager::Instance()->load("../assets/characters/player/attack.png", "player_attack", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
+
+    state_machine = new StateMachine();
+    state_machine->push(new MenuState());
 
     running = true;
 }
@@ -79,18 +79,22 @@ void Application::init()
 void Application::events()
 {
     InputManager::Instance()->update();
+
+    if (InputManager::Instance()->on_key_down(SDL_SCANCODE_RETURN)) {
+        state_machine->change(new PlayState());
+    }
 }
 
 void Application::update()
 {
-    player->update();
+    state_machine->update();
 }
 
 void Application::render()
 {
     SDL_RenderClear(renderer);
 
-    player->draw();
+    state_machine->render();
 
     SDL_RenderPresent(renderer);
 }

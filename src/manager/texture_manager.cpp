@@ -54,3 +54,9 @@ void TextureManager::draw(std::string id, int frame, int row, float x, float y, 
 
     SDL_RenderCopyEx(Application::Instance()->get_renderer(), tex_map[id], &src_rect, &dst_rect, 0, 0, flip);
 }
+
+void TextureManager::clean(std::string id)
+{
+    SDL_DestroyTexture(tex_map[id]);
+    tex_map.erase(id);
+}

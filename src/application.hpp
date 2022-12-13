@@ -1,8 +1,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
-#include "constants.hpp"
-#include "object/player.hpp"
+#include "state/state_machine.hpp"
 
 class Application {
     public:
@@ -31,7 +30,8 @@ class Application {
         SDL_Window* window = 0;
         SDL_Renderer* renderer = 0;
 
+        StateMachine* state_machine;
+
         bool running = false;
 
-        Player* player = new Player(new CharacterParams("player_idle", TEX_PLAYER_ROW, TEX_PLAYER_COLUMN, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT, 4));
 };

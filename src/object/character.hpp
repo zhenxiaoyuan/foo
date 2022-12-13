@@ -1,10 +1,14 @@
+#pragma once
+
 #include <string>
 
 #include "SDL/SDL.h"
+
 #include "../params/character_params.hpp"
+#include "game_object.hpp"
 #include "vector2d.hpp"
 
-class Character
+class Character : public GameObject
 {
 public:
     Character(const CharacterParams* params);
