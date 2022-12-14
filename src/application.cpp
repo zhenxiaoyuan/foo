@@ -4,6 +4,11 @@
 #include "state/menu_state.hpp"
 #include "state/play_state.hpp"
 
+#include "systems/make.hpp"
+#include "systems/draw.hpp"
+#include "systems/input.hpp"
+#include "systems/move.hpp"
+
 Application* Application::instance = nullptr;
 
 Application::Application()
@@ -52,7 +57,7 @@ void Application::set_running(bool running)
 
 SDL_Renderer *Application::get_renderer()
 {
-    return renderer;
+    return this->renderer;
 }
 
 void Application::init()
@@ -69,9 +74,10 @@ void Application::init()
     SDL_SetWindowTitle(window, "foo");
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
-
     state_machine = new StateMachine();
     state_machine->push(new MenuState());
+
+    make_player(registry);
 
     running = true;
 }
@@ -80,19 +86,25 @@ void Application::events()
 {
     InputManager::Instance()->update();
 
-    if (InputManager::Instance()->on_key_down(SDL_SCANCODE_RETURN)) {
+    input_player(registry);
+
+    if (InputManager::Instance()->is_key_down(SDL_SCANCODE_RETURN)) {
         state_machine->change(new PlayState());
     }
 }
 
 void Application::update()
 {
+    move(registry);
+
     state_machine->update();
 }
 
 void Application::render()
 {
     SDL_RenderClear(renderer);
+
+    draw_player(registry);
 
     state_machine->render();
 

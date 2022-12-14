@@ -7,16 +7,16 @@ const std::string PlayState::play_id = "PLAYER";
 
 void PlayState::update()
 {
-    for (auto it : game_objects) {
-        it->update();
-    }
+    // for (auto it : game_objects) {
+    //     it->update();
+    // }
 }
 
 void PlayState::render()
 {
-    for (auto it : game_objects) {
-        it->draw();
-    }
+    // for (auto it : game_objects) {
+    //     it->draw();
+    // }
 }
 
 bool PlayState::on_enter()
@@ -27,8 +27,8 @@ bool PlayState::on_enter()
     TextureManager::Instance()->load("../assets/characters/player/run.png", "player_run", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
     TextureManager::Instance()->load("../assets/characters/player/attack.png", "player_attack", TEX_PLAYER_WIDTH, TEX_PLAYER_HEIGHT);
 
-    Player* player = new Player(new CharacterParams("player_idle", TEX_PLAYER_ROW, TEX_PLAYER_COLUMN, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT, 4));
-    game_objects.push_back(player);
+    // Player* player = new Player(new CharacterParams("player_idle", TEX_PLAYER_ROW, TEX_PLAYER_COLUMN, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT, 4));
+    // game_objects.push_back(player);
 
     return true;
 }
@@ -37,11 +37,11 @@ bool PlayState::on_exit()
 {
     std::cout << "Exit play state." << std::endl;
 
-    for (auto it : game_objects) {
-        it->clean();
-    }
+    // for (auto it : game_objects) {
+    //     it->clean();
+    // }
 
-    game_objects.clear();
+    // game_objects.clear();
 
     TextureManager::Instance()->clean("player_idle");
     TextureManager::Instance()->clean("player_run");

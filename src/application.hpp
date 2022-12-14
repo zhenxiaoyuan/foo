@@ -1,3 +1,4 @@
+#include "entt/entt.hpp"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
@@ -13,6 +14,7 @@ class Application {
 
         void set_running(bool running);
         SDL_Renderer* get_renderer();
+        entt::registry get_registry();
 
     private:
         Application();
@@ -31,7 +33,9 @@ class Application {
         SDL_Renderer* renderer = 0;
 
         StateMachine* state_machine;
-
         bool running = false;
+
+        // entt
+        entt::registry registry;
 
 };

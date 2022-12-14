@@ -20,7 +20,7 @@ Character::~Character()
 
 void Character::draw()
 {
-    TextureManager::Instance()->draw(tex_id, frame, row, pos.get_x(), pos.get_y(), w, h, scalar, flip);
+    // TextureManager::Instance()->draw(tex_id, row, col, pos.get_x(), pos.get_y(), w, h, scalar, flip);
 }
 
 void Character::update()

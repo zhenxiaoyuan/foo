@@ -4,9 +4,12 @@ project(foo VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+set(CMAKE_CXX_STANDARD 20)
+
 add_executable(${PROJECT_NAME} src/main.cpp src/application.cpp 
                                src/manager/input_manager.cpp src/manager/texture_manager.cpp 
-                               src/object/vector2d.cpp src/object/character.cpp src/object/player.cpp 
+                               src/utils/vector2d.cpp 
+                               src/object/character.cpp 
                                src/state/state_machine.cpp src/state/game_state.cpp src/state/menu_state.cpp src/state/play_state.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)

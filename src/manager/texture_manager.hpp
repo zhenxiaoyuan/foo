@@ -5,6 +5,10 @@
 
 #include "SDL/SDL.h"
 
+#include "../components/position.hpp"
+#include "../components/velocity.hpp"
+#include "../components/sprite.hpp"
+
 class TextureManager
 {
 public:
@@ -14,7 +18,7 @@ public:
     static TextureManager* Instance();
 
     void load(std::string path, std::string id, int w, int h);
-    void draw(std::string id, int frame, int row, float x, float y, int w, int h, int scalar, SDL_RendererFlip flip);
+    void draw(const Sprite sprite, const Position pos, const Velocity vel);
     void clean(std::string id);
 
 private:

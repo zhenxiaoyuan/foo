@@ -6,7 +6,7 @@
 
 #include "../params/character_params.hpp"
 #include "game_object.hpp"
-#include "vector2d.hpp"
+#include "../utils/vector2d.hpp"
 
 class Character : public GameObject
 {

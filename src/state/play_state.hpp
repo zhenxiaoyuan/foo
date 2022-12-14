@@ -4,7 +4,6 @@
 
 #include "game_state.hpp"
 #include "../constants.hpp"
-#include "../object/player.hpp"
 
 class PlayState : public GameState
 {
@@ -24,6 +23,6 @@ public:
 private:
     static const std::string play_id;
 
-    std::vector<GameObject*> game_objects;
+    // std::vector<GameObject*> game_objects;
 
 };

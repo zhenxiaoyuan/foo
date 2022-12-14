@@ -13,11 +13,6 @@ Vector2D::~Vector2D()
 {
 }
 
-float Vector2D::length()
-{
-    return sqrt(this->x * this->x + this->y * this->y);
-}
-
 Vector2D Vector2D::operator+(const Vector2D& vec) const
 {
     return Vector2D(this->x + vec.x, this->y + vec.y);
@@ -70,6 +65,11 @@ Vector2D &operator-=(Vector2D &vec_l, const Vector2D &vec_r)
     return vec_l;
 }
 
+float Vector2D::length()
+{
+    return sqrt(this->x * this->x + this->y * this->y);
+}
+
 void Vector2D::normalize()
 {
     float l = this->length();
@@ -78,12 +78,18 @@ void Vector2D::normalize()
     }
 }
 
-float Vector2D::get_x()
+void Vector2D::zero()
+{
+    this->set_x(0);
+    this->set_y(0);
+}
+
+const float Vector2D::get_x() const
 {
     return this->x;
 }
 
-float Vector2D::get_y()
+const float Vector2D::get_y() const
 {
     return this->y;
 }

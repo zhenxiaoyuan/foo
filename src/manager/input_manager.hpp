@@ -8,7 +8,7 @@ public:
     static InputManager* Instance();
 
     void update();
-    bool on_key_down(SDL_Scancode key);
+    bool is_key_down(SDL_Scancode key);
 
 private:
     InputManager();

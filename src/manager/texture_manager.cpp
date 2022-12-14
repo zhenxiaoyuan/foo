@@ -1,5 +1,7 @@
 #include "texture_manager.hpp"
+
 #include "SDL/SDL_image.h"
+
 #include "../application.hpp"
 
 TextureManager* TextureManager::instance = nullptr;
@@ -39,20 +41,23 @@ void TextureManager::load(std::string path, std::string id, int w, int h)
     tex_map[id] = texture;
 }
 
-void TextureManager::draw(std::string id, int frame, int row, float x, float y, int w, int h, int scalar, SDL_RendererFlip flip)
+void TextureManager::draw(const Sprite sprite, const Position pos, const Velocity vel)
 {
+    int frame = int((SDL_GetTicks() / 100) % sprite.col);
+
     SDL_Rect src_rect, dst_rect;
 
-    src_rect.x = frame * w;
-    src_rect.y = (row - 1) * h;
-    dst_rect.x = x;
-    dst_rect.y = y;
-    src_rect.w = w;
-    src_rect.h = h;
-    dst_rect.w = w * scalar;
-    dst_rect.h = h * scalar;
+    src_rect.x = frame * sprite.w;
+    src_rect.y = (sprite.row - 1) * sprite.h;
+    src_rect.w = sprite.w;
+    src_rect.h = sprite.h;
 
-    SDL_RenderCopyEx(Application::Instance()->get_renderer(), tex_map[id], &src_rect, &dst_rect, 0, 0, flip);
+    dst_rect.x = pos.v2d.get_x();
+    dst_rect.y = pos.v2d.get_y();
+    dst_rect.w = sprite.w * sprite.scalar;
+    dst_rect.h = sprite.h * sprite.scalar;
+
+    SDL_RenderCopyEx(Application::Instance()->get_renderer(), tex_map[sprite.id], &src_rect, &dst_rect, 0, 0, sprite.flip);
 }
 
 void TextureManager::clean(std::string id)

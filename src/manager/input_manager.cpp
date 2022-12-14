@@ -30,7 +30,7 @@ void InputManager::update()
     
 }
 
-bool InputManager::on_key_down(SDL_Scancode key)
+bool InputManager::is_key_down(SDL_Scancode key)
 {
     const Uint8* key_state = SDL_GetKeyboardState(NULL);
 
