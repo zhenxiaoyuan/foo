@@ -1,28 +1,20 @@
 #pragma once
 
-#include <vector>
-
 #include "game_state.hpp"
-#include "../constants.hpp"
 
 class PlayState : public GameState
 {
 public:
-    virtual void update();
-    virtual void render();
+    void update() override;
+    void render() override;
 
-    virtual bool on_enter();
-    virtual bool on_exit();
+    bool on_enter() override;
+    bool on_exit() override;
 
-    virtual std::string get_state_id() const {
-        return play_id;
-    }
+    std::string get_state_id() const override;
 
     ~PlayState();
 
 private:
     static const std::string play_id;
-
-    // std::vector<GameObject*> game_objects;
-
 };

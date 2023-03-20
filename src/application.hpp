@@ -4,6 +4,10 @@
 
 #include "state/state_machine.hpp"
 
+#include "systems/input/input_handler.hpp"
+#include "object/character.hpp"
+#include "constants.hpp"
+
 class Application {
     public:
         static Application* Instance();
@@ -23,7 +27,7 @@ class Application {
         static Application* instance;
 
         const int FPS = 60;
-        const int DELAY_TIME = 1000.0f / 60;
+        const int DELAY_TIME = 1000.0f / FPS;
 
         void events();
         void update();
@@ -37,5 +41,8 @@ class Application {
 
         // entt
         entt::registry registry;
+
+        InputHandler* input_handler = new InputHandler();
+        Character actor = Character(new CharacterParams("player_idle", TEX_PLAYER_ROW, TEX_PLAYER_COLUMN, 100, 100, PLAYER_WIDTH, PLAYER_HEIGHT, 4));
 
 };

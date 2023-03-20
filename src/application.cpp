@@ -98,6 +98,11 @@ void Application::update()
     move(registry);
 
     state_machine->update();
+
+    Command* command = input_handler->handle_input();
+    if (command) {
+        command->exe(actor);
+    }
 }
 
 void Application::render()

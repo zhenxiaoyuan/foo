@@ -1,9 +1,10 @@
 #include <iostream>
 
 #include "play_state.hpp"
+#include "../constants.hpp"
 #include "../manager/texture_manager.hpp"
 
-const std::string PlayState::play_id = "PLAYER";
+const std::string PlayState::play_id = "PLAY";
 
 void PlayState::update()
 {
@@ -48,6 +49,11 @@ bool PlayState::on_exit()
     TextureManager::Instance()->clean("player_attack");
 
     return true;
+}
+
+std::string PlayState::get_state_id() const
+{
+    return play_id;
 }
 
 PlayState::~PlayState()

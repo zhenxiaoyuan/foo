@@ -5,15 +5,13 @@
 class MenuState : public GameState
 {
 public:
-    virtual void update();
-    virtual void render();
+    void update() override;
+    void render() override;
 
-    virtual bool on_enter();
-    virtual bool on_exit();
+    bool on_enter() override;
+    bool on_exit() override;
 
-    virtual std::string get_state_id() const {
-        return menu_id;
-    }
+    std::string get_state_id() const override;
 
     ~MenuState();
 

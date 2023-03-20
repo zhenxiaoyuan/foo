@@ -25,6 +25,11 @@ bool MenuState::on_exit()
     return true;
 }
 
+std::string MenuState::get_state_id() const
+{
+    return menu_id;
+}
+
 MenuState::~MenuState()
 {
     std::cout << "De-constructor menu state." << std::endl;
